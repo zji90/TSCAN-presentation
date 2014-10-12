@@ -10,7 +10,7 @@ hitheme     : tomorrow
 widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 github      :
-      user  : zhiji
+      user  : zji90
       repo  : TSCAN-presentation
 
 ---
