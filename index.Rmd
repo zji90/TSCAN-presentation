@@ -2,7 +2,7 @@
 title       : "TSCAN: Tools for Single-Cell ANalysis"
 subtitle    : "A Noval Method for Single-Cell RNA-seq Pseudotemporal Ordering"
 author      : Zhicheng Ji
-job         : Lab Meeting Oct 3rd
+job         : 
 logo        : bloomberg_shield.png
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -27,19 +27,9 @@ Single-cell RNA-seq is a powerful approach to investigate the heterogeneity of g
 
 Advantages of Single-cell RNA-seq compared to bulk RNA-seq:
 
-Avoid potential Simpson's paradox:
+Avoid potential Simpson's paradox and increase temporal resolution:
 
 <center><img src="fig/Simpson's_paradox.png" width="70%"></center>
-
----
-
-## Introductions
-
-Advantages of Single-cell RNA-seq compared to bulk RNA-seq:
-
-Increase temporal resolution:
-
-<center><img src="fig/temporal_resolution.png" width="100%"></center>
 
 ---
 
@@ -248,18 +238,6 @@ NFKB1:
 IRF9:
 
 <center><img src="fig/LPS_IRF9.png" width="100%"></center>
-
----
-
-## Future work
-
-* TSCAN 2.0: Tools for time course Single-Cell RNA-seq data
-
-* TSCAN 2.1: Tools for differential gene expression in Single-Cell RNA-seq data
-
-* TSCAN 3.0: Tools for alternative splicing analysis in Single-Cell RNA-seq data
-
-* GSCA 2.0: Similarity and time course analysis for PED
 
 
 --- .segue .dark
