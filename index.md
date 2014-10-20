@@ -128,7 +128,7 @@ Methods compared:
 
 ---
 
-## GO analysis
+## Differential gene analysis
 
 Key GO terms:
 
