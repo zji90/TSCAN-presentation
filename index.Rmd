@@ -128,20 +128,6 @@ Methods compared:
 
 ---
 
-## Differential gene analysis
-
-Key GO terms:
-
-HSMM: skeletal muscle cell differentiation (GO:0035914)
-
-LPS: immune response (GO:0006955)
-
-ES-MEF: embryo development (GO:0009790)
-
-<center><img src="fig/pooled_GO.png" width="105%"></center>
-
----
-
 ## HSMM CDK1 gene
 
 <center><img src="fig/HSMM_CDK1.png" width="100%"></center>
@@ -160,7 +146,21 @@ ES-MEF: embryo development (GO:0009790)
 
 ---
 
-## Single time point GO analysis
+## Differential gene analysis
+
+Key GO terms:
+
+HSMM: skeletal muscle cell differentiation (GO:0035914)
+
+LPS: immune response (GO:0006955)
+
+ES-MEF: embryo development (GO:0009790)
+
+<center><img src="fig/pooled_GO.png" width="105%"></center>
+
+---
+
+## Single time point
 
 <center><img src="fig/Singletimepoint.png" width="60%"></center>
 
