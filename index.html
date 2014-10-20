@@ -36,7 +36,7 @@
   </aside>
   <hgroup class="auto-fadein">
     <h1>TSCAN: Tools for Single-Cell ANalysis</h1>
-    <h2>A Noval Method for Single-Cell RNA-seq Pseudotemporal Ordering</h2>
+    <h2>A Noval Method for Single-Cell RNA-seq Pseudo Time Ordering</h2>
     <p>Zhicheng Ji<br/></p>
   </hgroup>
     <a href="https://github.com/zji90/TSCAN-presentation/zipball/gh-pages" class="example">
@@ -52,7 +52,7 @@
     <h2>Introductions</h2>
   </hgroup>
   <article data-timings="">
-    <p>Single-cell RNA-seq is a powerful approach to investigate the heterogeneity of gene expression activities on cell level, which is otherwise hard to detect by bulk transcriptomics experiments.</p>
+    <p>Single-cell RNA-seq is a powerful technology to investigate the heterogeneity of gene expressions on cell level, which is otherwise hard to detect by bulk RNA-seq.</p>
 
 <p><center><img src="fig/singlecell_RNA-Seq_workflow.jpg" width="70%"></center></p>
 
@@ -65,9 +65,7 @@
     <h2>Introductions</h2>
   </hgroup>
   <article data-timings="">
-    <p>Advantages of Single-cell RNA-seq compared to bulk RNA-seq:</p>
-
-<p>Avoid potential Simpson&#39;s paradox and increase temporal resolution:</p>
+    <p>Single-cell RNA-seq can avoid potential Simpson&#39;s paradox and increase temporal resolution:</p>
 
 <p><center><img src="fig/Simpson's_paradox.png" width="70%"></center></p>
 
@@ -80,14 +78,13 @@
     <h2>Introductions</h2>
   </hgroup>
   <article data-timings="">
-    <p>Many single-cell RNA-seq data involve a continuous biological process, which requires computational methods to realign the cells to a pseudotime scale.</p>
+    <p>Many single-cell RNA-seq data involve continuous biological processes. </p>
 
-<p>Current computational approaches:</p>
+<p>In differentiation process, some cells differentiate faster than the others even though they are collected at the same time point.</p>
 
-<ul>
-<li><p>SPADES: unsupervised spanning-tree progression approach to organize cells in a hierarchy of related phenotypes when applied to flow cytometry data.</p></li>
-<li><p>Monocle: unsupervised approach to order single cells by constructing a minimum-spanning-tree. Capable of finding different trajectories of biological process. </p></li>
-</ul>
+<p>An artificial order of cells need to be constructed to reflect the gradual change of the transcriptome among different cells.</p>
+
+<p>Monocle: unsupervised approach to construct pseudo time cell order using minimum-spanning-tree.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -98,13 +95,9 @@
     <h2>Introductions</h2>
   </hgroup>
   <article data-timings="">
-    <p>Disadvantages of current methods:</p>
+    <p><center><img src="fig/Monocle_demo.png" width="60%"></center></p>
 
-<ul>
-<li><p>Unsupervised methods cannot incorporate prior biological knowledge (e.g. expressions of marker genes).</p></li>
-<li><p>Users have limited options to tune the pseudotemporal orderings.</p></li>
-<li><p>No quantitative methods to evaluate different pseudotemporal orderings.</p></li>
-</ul>
+<p>Source: Trapnell, C., et al. (2014). The dynamics and regulators of cell fate decisions are revealed by pseudotemporal ordering of single cells. Nature biotechnology.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -115,12 +108,12 @@
     <h2>Introductions</h2>
   </hgroup>
   <article data-timings="">
-    <p>TSCAN, a novel method &amp; software package to address these problems:</p>
+    <p>Disadvantages of current methods:</p>
 
 <ul>
-<li><p>Can switch from unsupervised to supervised method to incorporate prior biological knowledge.</p></li>
-<li><p>Plenty of options for users to conveniently tune the pseudotemporal orderings.</p></li>
-<li><p>POS: quantitative methods to evaluate pseudotemporal orderings.</p></li>
+<li><p>Unsupervised methods cannot incorporate prior biological knowledge (e.g. expressions of marker genes).</p></li>
+<li><p>Users have limited options to tune the pseudo time orderings.</p></li>
+<li><p>No quantitative methods to evaluate different pseudo time orderings.</p></li>
 </ul>
 
   </article>
@@ -129,16 +122,16 @@
 
 <slide class="" id="slide-6" style="background:;">
   <hgroup>
-    <h2>Software Package</h2>
+    <h2>Introductions</h2>
   </hgroup>
   <article data-timings="">
-    <p>TSCAN is already available on Bioconductor:</p>
+    <p>TSCAN, a novel method &amp; software package:</p>
 
-<p><a href="http://www.bioconductor.org/packages/devel/bioc/html/TSCAN.html">http://www.bioconductor.org/packages/devel/bioc/html/TSCAN.html</a></p>
-
-<p>TSCAN GUI can be directly launched on:</p>
-
-<p><a href="https://zhiji.shinyapps.io/TSCAN">https://zhiji.shinyapps.io/TSCAN</a></p>
+<ul>
+<li><p>Can switch from unsupervised to supervised strategy to incorporate prior biological knowledge.</p></li>
+<li><p>Plenty of options for users to conveniently tune the pseudo time orderings.</p></li>
+<li><p>POS: quantitative methods to evaluate different pseudo time orderings.</p></li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -146,13 +139,17 @@
 
 <slide class="" id="slide-7" style="background:;">
   <hgroup>
-    <h2>Datasets</h2>
+    <h2>TSCAN Methods</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li><p>Human skeletal muscle myoblasts (HSMM): 4 time points; 271 cells; 47192 genes</p></li>
-<li><p>Mouse LPS stimulation (pathogen): 5 time points; 363 cells; 27723 genes</p></li>
-</ul>
+    <ol>
+<li>Perform principal component analysis.</li>
+<li>Model-based clustering.</li>
+<li>Connect all cluster centers with minimum-spanning-tree.</li>
+<li>Project all points on the backbone path and form pseudo time ordering.</li>
+</ol>
+
+<p><center><img src="fig/TSCAN_overview.png" width="50%"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -163,13 +160,13 @@
     <h2>POS</h2>
   </hgroup>
   <article data-timings="">
-    <p>Pseudotemporal Ordering Score: quantitatively measure different pseudotemporal orderings.</p>
+    <p>Pseudo time Ordering Score: quantitatively measure different pseudo time orderings.</p>
 
 <p>Requires prior knowledge of at least two cell sub-populations.</p>
 
-<p>Cells collected at later time points should also be assigned to a later position on pseudotime course.</p>
+<p>Cells collected at later time points should be assigned to later positions on pseudo time axis.</p>
 
-<p>Definition:</p>
+<p>Definition for two cell sub-population case:</p>
 
 <p>\(\frac{\sum_{i,j:\pi(i) \prec \pi(j)} (T_j-T_i)}{N_1*N_2}\)</p>
 
@@ -179,17 +176,25 @@
 
 <slide class="" id="slide-9" style="background:;">
   <hgroup>
-    <h2>TSCAN Methods</h2>
+    <h2>Results</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li><p>Add pseudocount 1 and take log2 of data.</p></li>
-<li><p>Select key genes: expression greater than 0.5 in at least 30% of all cells. CV in non-dropout cell greater than the median CV. (HSMM: 3989 genes; LPS: 2892 genes)</p></li>
-<li><p>Perform principal component analysis with selected optimal dimension.</p></li>
-<li><p>Multivariate normal clustering using the data after PCA.</p></li>
-<li><p>Connect all cluster centers with minimum-spanning-tree.</p></li>
-<li><p>Assign all points on the time course by projections.</p></li>
-</ol>
+    <p>Testing datasets:</p>
+
+<ul>
+<li><p>Human skeletal muscle myoblasts: 4 time points; 271 cells; 47192 genes; marker: CKM</p></li>
+<li><p>Mouse LPS stimulation: 5 time points; 363 cells; 27723 genes; marker: BCL3</p></li>
+<li><p>Mouse ES-MEF: 2 time pints; 92 cells; 21711 genes; marker: Sox2</p></li>
+</ul>
+
+<p>Methods compared:</p>
+
+<ul>
+<li><p>Monocle</p></li>
+<li><p>Unsupervised TSCAN</p></li>
+<li><p>Supervised TSCAN (with marker gene information)</p></li>
+<li><p>Marker gene</p></li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -197,12 +202,10 @@
 
 <slide class="" id="slide-10" style="background:;">
   <hgroup>
-    <h2>HSMM Results</h2>
+    <h2>POS</h2>
   </hgroup>
   <article data-timings="">
-    <p>Monocle :</p>
-
-<p><center><img src="fig/HSMM_Monocle.png"></center></p>
+    <p><center><img src="fig/POS.png" width="100%"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -210,12 +213,18 @@
 
 <slide class="" id="slide-11" style="background:;">
   <hgroup>
-    <h2>HSMM Results</h2>
+    <h2>GO analysis</h2>
   </hgroup>
   <article data-timings="">
-    <p>MST after mclust:</p>
+    <p>Key GO terms:</p>
 
-<p><center><img src="fig/HSMM_mclusttree.png"></center></p>
+<p>HSMM: skeletal muscle cell differentiation (GO:0035914)</p>
+
+<p>LPS: immune response (GO:0006955)</p>
+
+<p>ES-MEF: embryo development (GO:0009790)</p>
+
+<p><center><img src="fig/pooled_GO.png" width="105%"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -223,12 +232,10 @@
 
 <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>HSMM Results</h2>
+    <h2>HSMM CDK1 gene</h2>
   </hgroup>
   <article data-timings="">
-    <p>Monocle POS: 0.4457489</p>
-
-<p>TSCAN POS: 0.5268724</p>
+    <p><center><img src="fig/HSMM_CDK1.png" width="100%"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -236,12 +243,10 @@
 
 <slide class="" id="slide-13" style="background:;">
   <hgroup>
-    <h2>HSMM Results</h2>
+    <h2>LPS STAT1 gene</h2>
   </hgroup>
   <article data-timings="">
-    <p>CDK1:</p>
-
-<p><center><img src="fig/HSMM_CDK1.png"></center></p>
+    <p><center><img src="fig/LPS_STAT1.png" width="100%"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -249,12 +254,10 @@
 
 <slide class="" id="slide-14" style="background:;">
   <hgroup>
-    <h2>HSMM Results</h2>
+    <h2>ESMEF Pou5f1 gene</h2>
   </hgroup>
   <article data-timings="">
-    <p>ID1:</p>
-
-<p><center><img src="fig/HSMM_ID1.png"></center></p>
+    <p><center><img src="fig/ESMEF_Pou5f1.png" width="100%"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -262,12 +265,10 @@
 
 <slide class="" id="slide-15" style="background:;">
   <hgroup>
-    <h2>HSMM Results</h2>
+    <h2>Single time point GO analysis</h2>
   </hgroup>
   <article data-timings="">
-    <p>MYOG:</p>
-
-<p><center><img src="fig/HSMM_MYOG.png"></center></p>
+    <p><center><img src="fig/Singletimepoint.png" width="60%"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -275,12 +276,16 @@
 
 <slide class="" id="slide-16" style="background:;">
   <hgroup>
-    <h2>HSMM Results</h2>
+    <h2>Software Package</h2>
   </hgroup>
   <article data-timings="">
-    <p>MEF2C:</p>
+    <p>TSCAN is already available on Bioconductor:</p>
 
-<p><center><img src="fig/HSMM_MEF2C.png"></center></p>
+<p><a href="http://bioconductor.org/packages/release/bioc/html/TSCAN.html">http://bioconductor.org/packages/release/bioc/html/TSCAN.html</a></p>
+
+<p>TSCAN GUI can be directly launched on:</p>
+
+<p><a href="https://zhiji.shinyapps.io/TSCAN">https://zhiji.shinyapps.io/TSCAN</a></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -288,111 +293,15 @@
 
 <slide class="" id="slide-17" style="background:;">
   <hgroup>
-    <h2>HSMM Results</h2>
+    <h2>Demo</h2>
   </hgroup>
   <article data-timings="">
-    <p>MYH2:</p>
-
-<p><center><img src="fig/HSMM_MYH2.png"></center></p>
-
+    
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
-  <hgroup>
-    <h2>LPS Results</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Monocle :</p>
-
-<p><center><img src="fig/LPS_Monocle.png"></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-19" style="background:;">
-  <hgroup>
-    <h2>LPS Results</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>MST after mclust:</p>
-
-<p><center><img src="fig/LPS_mclusttree.png"></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-20" style="background:;">
-  <hgroup>
-    <h2>LPS Results</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Monocle POS: 0.4279521</p>
-
-<p>TSCAN POS: 0.7135031</p>
-
-<p>TSCAN STAT2 adjusted POS: 0.7620408 </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-21" style="background:;">
-  <hgroup>
-    <h2>LPS Results</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>STAT1:</p>
-
-<p><center><img src="fig/LPS_STAT1.png" width="100%"></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-22" style="background:;">
-  <hgroup>
-    <h2>LPS Results</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>STAT2:</p>
-
-<p><center><img src="fig/LPS_STAT2.png" width="100%"></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-23" style="background:;">
-  <hgroup>
-    <h2>LPS Results</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>NFKB1:</p>
-
-<p><center><img src="fig/LPS_NFKB1.png" width="100%"></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-24" style="background:;">
-  <hgroup>
-    <h2>LPS Results</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>IRF9:</p>
-
-<p><center><img src="fig/LPS_IRF9.png" width="100%"></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="segue dark" id="slide-25" style="background:;">
+<slide class="segue dark" id="slide-18" style="background:;">
   <hgroup>
     <h2>Thank you!</h2>
   </hgroup>
@@ -438,13 +347,13 @@
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Software Package'>
+        data-slide=6 title='Introductions'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Datasets'>
+        data-slide=7 title='TSCAN Methods'>
          7
       </a>
     </li>
@@ -456,104 +365,62 @@
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='TSCAN Methods'>
+        data-slide=9 title='Results'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='HSMM Results'>
+        data-slide=10 title='POS'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='HSMM Results'>
+        data-slide=11 title='GO analysis'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='HSMM Results'>
+        data-slide=12 title='HSMM CDK1 gene'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='HSMM Results'>
+        data-slide=13 title='LPS STAT1 gene'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='HSMM Results'>
+        data-slide=14 title='ESMEF Pou5f1 gene'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='HSMM Results'>
+        data-slide=15 title='Single time point GO analysis'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='HSMM Results'>
+        data-slide=16 title='Software Package'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='HSMM Results'>
+        data-slide=17 title='Demo'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='LPS Results'>
+        data-slide=18 title='Thank you!'>
          18
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='LPS Results'>
-         19
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='LPS Results'>
-         20
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='LPS Results'>
-         21
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='LPS Results'>
-         22
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='LPS Results'>
-         23
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='LPS Results'>
-         24
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Thank you!'>
-         25
       </a>
     </li>
   </ul>
